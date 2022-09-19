@@ -4,26 +4,25 @@ from Nodo import Nodo
 
 class AFN_to_AFD:
     
-    @staticmethod    
-    def unmarked(d_states):
+    def __init__(self):
+        pass
+    
+    def unmarked(self, d_states):
         for i in d_states:
             if i[1] == 0:
                 return True
         return False
 
-    @staticmethod
-    def return_first_unmarked(d_states):
+    def return_first_unmarked(self, d_states):
         for i in d_states:
             if i[1] == 0:
                 return i
         return False
 
-    @staticmethod
-    def return_states_d(d_states):       
+    def return_states_d(self, d_states):       
         return [the_state[0] for the_state in d_states]
 
-    @staticmethod
-    def state_in_states(the_state, d_states):
+    def state_in_states(self, the_state, d_states):
         for d_state in d_states:
             if len(the_state) == len(d_state):
                 keep = True
@@ -35,8 +34,7 @@ class AFN_to_AFD:
                     return True
         return False
 
-    @staticmethod
-    def return_state_in_states(the_state, d_states):
+    def return_state_in_states(self, the_state, d_states):
         for d_state in d_states:
             if len(the_state) == len(d_state[0]):
                 keep = True
@@ -48,36 +46,34 @@ class AFN_to_AFD:
                     return d_state
         return False
 
-    @staticmethod
-    def traduction_afd(afn):
+    def traduction_afd(self, afn):
         d_states = []
         d_tran = []
         counter = 0
         d_states.append([afn.cerraduraE(afn.estadoInicial), 0, counter])
-        while unmarked(d_states):
-            estado_t = return_first_unmarked(d_states)
+        while self.unmarked(d_states):
+            estado_t = self.return_first_unmarked(d_states)
             estado_t[1] = 1
             simbolos = copy.deepcopy(afn.simbolos)
             if 'ε' in simbolos:
                 simbolos.remove('ε')
             for simbolo in simbolos:
                 U = afn.cerraduraE(afn.move(estado_t[0], simbolo))
-                d_only_states = return_states_D(d_states)
+                d_only_states = self.return_states_D(d_states)
                 nuevo_estado = []
                 if U:
-                    if not state_in_states(U, d_only_states):
+                    if not self.state_in_states(U, d_only_states):
                         counter = counter + 1
                         nuevo_estado = [U, 0, counter]
                         d_states.append([U, 0, counter])
                     else:
-                        nuevo_estado = return_state_in_states(U, d_states)
+                        nuevo_estado = self.return_state_in_states(U, d_states)
 
                     d_tran.append([estado_t[2], simbolo, nuevo_estado[2]])
 
         return d_states, d_tran
 
-    @staticmethod
-    def convert_afd_nodo(afn, d_states, d_tran):
+    def convert_afd_nodo(self, afn, d_states, d_tran):
         nodo = Nodo('')
 
         simbolos = copy.deepcopy(afn.simbolos)
