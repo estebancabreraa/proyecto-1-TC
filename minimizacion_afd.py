@@ -19,10 +19,7 @@ def traduccionAFDMinimizado(afd):
     estadosFinales = []
     
     for estado in afd.estados:
-        if estado not in afd.estadosFinales:
-            estadosNoFinales.append(estado)
-        else:
-            estadosFinales.append(estado)
+        estadosNoFinales.append(estado) if estado not in afd.estadosFinales else estadosFinales.append(estado)
             
     Pactual.append(copy.deepcopy(estadosFinales))
     Pactual.append(copy.deepcopy(estadosNoFinales))

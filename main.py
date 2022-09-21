@@ -4,9 +4,9 @@ import copy
 
 import lectorExpresiones
 import traductorExpresion_a_AFN
-import traductorAFN_a_AFD
+import afn_a_afd
 import traductorExpresion_a_AFD
-import traductorADF_a_AFDMinimizado
+import minimizacion_afd
 import simulaciones
 
 ### Se importa el modulo Nodo para utilizar la estructura definida para nodos
@@ -74,10 +74,10 @@ f.view()
 
 ###---------------------------------------------AFD---------------------------------------------###
 ### Creacion de subconjuntos para pasar de AFN -> AFD 
-dStates, dTrans = traductorAFN_a_AFD.traduccionAFD(afn)
+dStates, dTrans = afn_a_afd.traduccionAFD(afn)
 
 ### Creamos una estructura de Nodo para simular el AFD
-afd = traductorAFN_a_AFD.convertirAFDNodo(afn, dStates, dTrans)
+afd = afn_a_afd.convertirAFDNodo(afn, dStates, dTrans)
 
 
 ### Simulacion AFD
@@ -175,10 +175,10 @@ f.view()
 
 ###------------------------------------------MINIMIZACION-AFD---------------------------------------###
 ### Minimizar el AFD generado a partir del AFN
-afdmStates = traductorADF_a_AFDMinimizado.traduccionAFDMinimizado(afd)
+afdmStates = minimizacion_afd.traduccionAFDMinimizado(afd)
 
 ### Ordenar el AFD minimizado con la estructura de Nodos
-afdm = traductorADF_a_AFDMinimizado.convertirAFDMinimizadoNodo(afdmStates, afd)
+afdm = minimizacion_afd.convertirAFDMinimizadoNodo(afdmStates, afd)
 
 ### Simulacion AFD Minimizado
 resultadoAFDM = simulaciones.simulacionAFD(afdm, cadena)
