@@ -1,0 +1,14 @@
+digraph "Automata Finito Determinista" {
+	rankdir=LR size="8,5"
+	node [shape=doublecircle]
+	1
+	2
+	node [shape=circle]
+	0
+	node [shape=none]
+	""
+	"" -> 0 [label=""]
+	node [shape=circle]
+	0 -> 1 [label=a]
+	0 -> 2 [label=b]
+}

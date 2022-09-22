@@ -1,0 +1,14 @@
+digraph "Automata Finito Determinista (Minimizado)" {
+	rankdir=LR size="8,5"
+	node [shape=doublecircle]
+	0
+	0
+	node [shape=circle]
+	1
+	node [shape=none]
+	""
+	"" -> 1 [label=""]
+	node [shape=circle]
+	1 -> 0 [label=a]
+	1 -> 0 [label=b]
+}

@@ -1,0 +1,13 @@
+digraph "Automata Finito Determinista (Directa)" {
+	rankdir=LR size="8,5"
+	node [shape=doublecircle]
+	1
+	node [shape=circle]
+	0
+	node [shape=none]
+	""
+	"" -> 0 [label=""]
+	node [shape=circle]
+	0 -> 1 [label=a]
+	0 -> 1 [label=b]
+}
