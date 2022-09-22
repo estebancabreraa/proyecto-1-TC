@@ -2,6 +2,7 @@ from graphviz import Digraph
 import random
 import copy
 
+import expresion_regular_a_postfix
 import lectorExpresiones
 import traductorExpresion_a_AFN
 import afn_a_afd
@@ -14,9 +15,9 @@ from Nodo import Nodo
 
 pasar = False
 
+cadena_expresion = ''
 while not pasar:
-    expresion = input('Ingrese su expresion: ')
-
+    expresion = input('Ingrese su expresion: ')       
     cadena = input('Ingrese su input de caracteres a evaluar: ')
     cadena = cadena.replace(' ', '')
 
@@ -27,6 +28,12 @@ while not pasar:
 
     if not pasar:
         print(mensaje)
+    
+    cadena_expresion = expresion
+            
+#---------------------------------EXPRESION REGULAR A POSTFIX---------------------------------#
+resultado_regular_a_postfix = expresion_regular_a_postfix.regular_a_postfix(cadena_expresion)
+print(f"TRANSFORMACION DE EXPRESION REGULAR A POSTFIX: \'{resultado_regular_a_postfix }\'")
 
 #---------------------------------------------AFN---------------------------------------------#
 # Se convierten los nodos que no son operandos en Nodos para almacenar
